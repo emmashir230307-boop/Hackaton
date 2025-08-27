@@ -5,8 +5,8 @@ def start(id_num,password):
     while not id_num.isdigit() or len(id_num)!=9:
         print('Invalid id')
         id_num=input("Enter id number: ")
-    if id_num in consts.DONOR_DICT.keys():
-        if password!=consts.DONOR_DICT['ID']['[password']:
+    if id_num in consts.VOLUNTEER_DICT.keys():
+        if password!=consts.VOLUNTEER_DICT['ID']['[password']:
             print('Wrong password')
         else:
             print('signed in successfully')
@@ -47,7 +47,7 @@ def signup(id_num,password):
         continue
     if user_type==consts.DONOR:
         if worker.legit():
-            consts.DONOR_DICT[id_num]= {'password':password,
+            consts.VOLUNTEER_DICT[id_num]= {'password':password,
                                           'user type':user_type.upper(),
                                           'help type':help_type.upper(),
                                           'name':name,
