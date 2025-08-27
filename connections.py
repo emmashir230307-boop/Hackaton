@@ -1,20 +1,31 @@
-# pair matching:
-import menu
-import consts
-def match_donor_to_needy(volunteer_id,VOLUNTEER_DICT,NEED_HELP_DICT):
-    matched_need_help = []
-    # # for donor in donor_dict:
-    for needy in NEED_HELP_DICT:
-        if VOLUNTEER_DICT[volunteer_id][consts.HELP_OPTIONS] and NEED_HELP_DICT[needy][consts.HELP_OPTIONS] == 'BABYSITTER':
-            matched_need_help.append((NEED_HELP_DICT(needy)))
-        elif VOLUNTEER_DICT[volunteer_id][consts.HELP_OPTIONS] and NEED_HELP_DICT[needy][consts.HELP_OPTIONS] == 'CLOTHES':
-            if VOLUNTEER_DICT[volunteer_id][consts.SUB_CLOTHES] == NEED_HELP_DICT[needy][consts.SUB_CLOTHES]:
-                matched_need_help.append((NEED_HELP_DICT(needy)))
-        elif VOLUNTEER_DICT[volunteer_id][consts.HELP_OPTIONS] and NEED_HELP_DICT[needy][consts.HELP_OPTIONS] == 'FOOD':
-            if VOLUNTEER_DICT[volunteer_id][consts.SUB_FOOD] == NEED_HELP_DICT[needy][consts.SUB_FOOD]:
-                matched_need_help.append((NEED_HELP_DICT(needy)))
-        elif VOLUNTEER_DICT[volunteer_id][consts.HELP_OPTIONS] and NEED_HELP_DICT[needy][consts.HELP_OPTIONS] == 'PRIVATE LESSONS':
-            if VOLUNTEER_DICT[volunteer_id][consts.SUB_LESSONS] == NEED_HELP_DICT[needy][consts.SUB_LESSONS]:
-                matched_need_help.append((NEED_HELP_DICT(needy)))
 
-# def contacting():
+import consts
+def find_user_type(id_num):
+    for helper in consts.VOLUNTEER_DICT.keys():
+        if id_num == helper:
+            return consts.VOLUNTEER_DICT[helper]['user type']
+    for needy in consts.NEED_HELP_DICT.keys():
+        if id_num == needy:
+            return consts.NEED_HELP_DICT[needy]['user type']
+
+def match_donor_to_needy(id_num,user_type):
+    match=False
+    if user_type==consts.VOLUNTEER:
+        for needy in consts.NEED_HELP_DICT.keys():
+            if consts.NEED_HELP_DICT[needy]['help type']==consts.VOLUNTEER_DICT[id_num]['help type']:
+                match=needy
+    else:
+        for helper in consts.VOLUNTEER_DICT.keys():
+            if consts.VOLUNTEER_DICT[helper]['help type']==consts.NEED_HELP_DICT[id_num]['help type']:
+                match=helper
+    return match
+
+def contacting(id_num):
+    user_type=find_user_type(id_num)
+    match=match_donor_to_needy(id_num,user_type)
+    if not match:
+        print('no match right now, we wrote you in our data base.')
+    elif user_type==consts.VOLUNTEER:
+        print(f'match found, need help: {consts.NEED_HELP_DICT[match]['name']} \n phone number: {consts.NEED_HELP_DICT[match]["phone number"]}')
+    else:
+        print(f'match found, can help: {consts.VOLUNTEER_DICT[match]['name']} \n phone number: {consts.VOLUNTEER_DICT[match]["phone number"]}')
