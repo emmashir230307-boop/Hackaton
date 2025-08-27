@@ -7,6 +7,7 @@ def find_user_type(id_num):
     for needy in consts.NEED_HELP_DICT.keys():
         if id_num == needy:
             return consts.NEED_HELP_DICT[needy]['user type']
+    print()
 
 def match_donor_to_needy(id_num,user_type):
     match=False
