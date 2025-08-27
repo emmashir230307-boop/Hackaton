@@ -17,5 +17,3 @@ HELP_OPTIONS=[CLOTHES, BABYSITTER,FOOD,PRIVATE_LESSONS]
 SUB_CLOTHES=['LAUNDRY','FIX OR SEW CLOTHES']
 SUB_FOOD=['DINNER','HOT MEAL']
 SUB_LESSONS=['MATH','ENGLISH','SCIENCE']
-
-# dict={'id':{'name':'ddk','password':'p2', 'user type':'jcj','help type':'kk','subcatagory':'cc'}}
