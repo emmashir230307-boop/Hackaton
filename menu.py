@@ -1,4 +1,5 @@
 import consts
+import worker
 
 def start(id_num,password):
     while not id_num.isdigit() or len(id_num)!=9:
@@ -45,11 +46,13 @@ def signup(id_num,password):
         help_type=input("Enter What type of help you need/able to give: ")
         continue
     if user_type==consts.DONOR:
-        consts.DONOR_DICT.update(id_num, {'password':password,
-                                      'user type':user_type.upper(),
-                                      'help type':help_type.upper(),
-                                      'name':name,
-                                      'phone number':phone_num})
+        if worker.legit():
+            consts.DONOR_DICT[id_num]= {'password':password,
+                                          'user type':user_type.upper(),
+                                          'help type':help_type.upper(),
+                                          'name':name,
+                                          'phone number':phone_num}
+        else: exit()
     else:
         consts.NEED_HELP_DICT.update(id_num, {'password': password,
                                       'user type': user_type.upper(),
