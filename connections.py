@@ -17,7 +17,7 @@ def match_donor_to_needy(volunteer_id,VOLUNTEER_DICT,NEED_HELP_DICT):
             if VOLUNTEER_DICT[volunteer_id][consts.SUB_LESSONS] == NEED_HELP_DICT[needy][consts.SUB_LESSONS]:
                 matched_need_help.append((NEED_HELP_DICT(needy)))
 
-def contacting():
+# def contacting():
 
 
 
