@@ -1,5 +1,5 @@
 from tkinter import *
-
+import consts
 def start_screen():
     list = []
     def button_command(list):
@@ -9,7 +9,7 @@ def start_screen():
 
     root = Tk()
     root.geometry("1000x600")
-    root.title("Help To Go :)")
+    root.title(f'{consts.APP_NAME}:)')
     root.configure(bg='lightblue')
     label = Label(root, text="Hello, Welcome to Help To Go!", font=("Times New Roman", 20), fg="darkblue")
     label.pack(pady=20)
