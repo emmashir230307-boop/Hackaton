@@ -1,3 +1,5 @@
+import consts
+
 APP_NAME='HELP TO GO'
 LONE_SOLDIER_LST=["444444444", "777777777"]
 EVICTED_LST=["333333333","666666666"]
@@ -5,7 +7,12 @@ MILITARY_LST=["222222222","555555555"]
 EMPLOYED=[("111111111","12345678"),("888888888","87654321")]
 
 VOLUNTEER_DICT={}
-NEED_HELP_DICT={}
+NEED_HELP_DICT={"222222222":{'name':'Maya','address':'רוטשילד 12, תל אביב','password':'Maya123','user type':consts.MILITARY_SERVICE_FAM},
+                '555555555':{},
+                '333333333':{},
+                '666666666':{},
+                "444444444":{},
+                "777777777":{}}
 LONELY_SOLDIER='LONE SOLDIER'
 EVICTED_FAM='EVICTED FAMILY'
 MILITARY_SERVICE_FAM='MILITARY FAMILY'

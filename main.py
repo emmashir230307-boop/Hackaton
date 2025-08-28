@@ -1,10 +1,8 @@
-import connections
+
 import new
-import map
-import consts
-import tkinter as tk
+
 from tkinter import *
-import worker_screen
+
 
 def main():
     root = Tk()

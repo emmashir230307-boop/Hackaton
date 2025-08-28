@@ -146,3 +146,9 @@ def signup(root, id_num, password):
     Button(root, text="Back to login", command=lambda: start_screen(root)).pack(pady=5)
 
 
+root = Tk()
+root.geometry("500x500")
+root.title("Help To Go :)")
+root.configure(bg='lightblue')
+start_screen(root)
+root.mainloop()
