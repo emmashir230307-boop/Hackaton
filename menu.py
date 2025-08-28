@@ -45,16 +45,18 @@ def signup(id_num,password):
         print('Invalid help type')
         help_type=input("Enter What type of help you need/able to give: ")
         continue
-    if user_type==consts.DONOR:
+    if user_type==consts.VOLUNTEER:
         if worker.legit():
             consts.VOLUNTEER_DICT[id_num]= {'password':password,
                                           'user type':user_type.upper(),
                                           'help type':help_type.upper(),
                                           'name':name,
-                                          'phone number':phone_num}
+                                          'phone number':phone_num,
+                                            'ID':id_num,}
         else: exit()
     else:
-        consts.NEED_HELP_DICT.update(id_num, {'password': password,
+        consts.NEED_HELP_DICT[id_num]={'password': password,
                                       'user type': user_type.upper(),
                                       'help type': help_type.upper(), 'name': name,
-                                      'phone number': phone_num})
+                                      'phone number': phone_num,
+                                              'ID': id_num,}
