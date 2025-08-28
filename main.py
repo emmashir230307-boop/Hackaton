@@ -1,14 +1,18 @@
 import connections
-import menu
+import new
+import map
+import consts
+import tkinter as tk
+from tkinter import *
+import worker_screen
 
 def main():
-    search_help=False #change later to input of user to search
-    id_num=int(input("Enter ID: "))
-    password=input("Enter Password: ")
-    menu.start(id_num,password)
-    if search_help:
-        user_type=connections.find_user_type(id_num)
-        match_id=connections.match_donor_to_needy(id_num,user_type)
-        connections.contacting(match_id)
-    else:
-        pass
+    root = Tk()
+    root.geometry("500x500")
+    root.title("Help To Go :)")
+    root.configure(bg='lightblue')
+    new.start_screen(root)
+    root.mainloop()
+
+if __name__ == '__main__':
+    main()

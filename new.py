@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
+
+import connections
 import consts
 import worker_screen
 
@@ -124,6 +126,7 @@ def signup(root, id_num, password):
                     "address" : address
                 }
                 messagebox.showinfo("Success", "Volunteer signed up successfully!")
+                connections.contacting(id_num)
             else:
                 messagebox.showerror("Error", "Volunteer not approved.")
                 return
@@ -137,15 +140,9 @@ def signup(root, id_num, password):
                 "address" : address
             }
             messagebox.showinfo("Success", "User signed up successfully!")
-
+            connections.contacting(id_num)
 
     Button(root, text="Submit", command=on_submit).pack(pady=10)
     Button(root, text="Back to login", command=lambda: start_screen(root)).pack(pady=5)
 
 
-root = Tk()
-root.geometry("500x500")
-root.title("Help To Go :)")
-root.configure(bg='lightblue')
-start_screen(root)
-root.mainloop()
