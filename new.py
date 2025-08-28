@@ -10,7 +10,6 @@ def worker_or_user(root):
     var.set('Initialize')
     Radiobutton(root, text='user', variable=var, value='user', bg="lightblue").pack(pady=5)
     Radiobutton(root, text='worker', variable=var, value='worker', bg="lightblue").pack(pady=5)
-    selection=var.get()
 
     def submit():
         selection = var.get()
