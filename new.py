@@ -5,35 +5,35 @@ import worker_screen
 
 
 def worker_or_user(root):
+    values = {"user": "1",
+              "worker": "2"}
     Label(root, text="Please choose who you are: ", font=("Times New Roman", 12), bg="lightblue").pack(pady=10)
-    var = StringVar()
-    var.set(None)
+    var = StringVar(root, value='1')
+    var.set(values["user"])
     Radiobutton(root, text='user', variable=var, value='user', bg="lightblue").pack(pady=5)
     Radiobutton(root, text='worker', variable=var, value='worker', bg="lightblue").pack(pady=5)
-    selected_value = str(var.get())
-    return selected_value
 
-
+    def submit():
+        if var=='user':
+            user_window(root)
+        else:
+            worker_screen.worker_screen_func()
+    Button(root, text="Submit", command=submit).pack(pady=20)
 
 def start_screen(root):
     for widget in root.winfo_children():
         widget.destroy()
 
     Label(root, text="Hello, Welcome to Help To Go!",
-          font=("Times New Roman", 20), fg="darkblue", bg="lightblue").pack(pady=20)
+          font=("Times New Roman", 20), fg="dark blue", bg="lightblue").pack(pady=20)
 
-    user_or_worker = worker_or_user(root)
+    worker_or_user(root)
 
-    if user_or_worker == "worker":
-        worker_screen.worker_screen_func()
+def user_window(root):
 
-    # else:
-    #     user_window()
-def user_window():
     Label(root, text="Please enter your ID: ", font=("Times New Roman", 12), bg="lightblue").pack(pady=10)
     entry_id = Entry(root, width=20)
     entry_id.pack(pady=10)
-
     Label(root, text="Please enter your password: ", font=("Times New Roman", 12), bg="lightblue").pack(pady=10)
     entry_password = Entry(root, width=20, show="*")
     entry_password.pack(pady=10)
@@ -72,20 +72,20 @@ def signup(root, id_num, password):
         widget.destroy()
 
     Label(root, text="Signup screen",
-          font=("Times New Roman", 18), fg="darkblue", bg="lightblue").pack(pady=10)
+          font=("Times New Roman", 18), fg="dark blue", bg="light blue").pack(pady=10)
 
     # inputting help
-    Label(root, text="Enter your name:", bg="lightblue").pack(pady=5)
+    Label(root, text="Enter your name:", bg="light blue").pack(pady=5)
     entry_name = Entry(root, width=20)
     entry_name.pack(pady=5)
-    Label(root, text="Enter your phone number:", bg="lightblue").pack(pady=5)
+    Label(root, text="Enter your phone number:", bg="light blue").pack(pady=5)
     entry_phone = Entry(root, width=20)
     entry_phone.pack(pady=5)
-    Label(root, text="Who are you?", bg="lightblue").pack(pady=5)
+    Label(root, text="Who are you?", bg="light blue").pack(pady=5)
     user_type_var = StringVar(root)
     user_type_var.set("who are you?")
     OptionMenu(root, user_type_var, *consts.USERS_TYPE2).pack(pady=5)
-    Label(root, text="What type of help do you need?", bg="lightblue").pack(pady=5)
+    Label(root, text="What type of help do you need?", bg="light blue").pack(pady=5)
     help_type_var = StringVar(root)
     help_type_var.set("choose:")
     OptionMenu(root, help_type_var, *consts.HELP_OPTIONS).pack(pady=5)
@@ -96,7 +96,7 @@ def signup(root, id_num, password):
         user_type = user_type_var.get().upper()
         help_type = help_type_var.get().upper()
 
-        # בדיקות תקינות
+        # checking valid
         if not name.isalpha():
             messagebox.showerror("Error", "Invalid name. Use letters only.")
             return
