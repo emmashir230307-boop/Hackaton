@@ -5,16 +5,16 @@ import worker_screen
 
 
 def worker_or_user(root):
-    values = {"user": "1",
-              "worker": "2"}
     Label(root, text="Please choose who you are: ", font=("Times New Roman", 12), bg="lightblue").pack(pady=10)
-    var = StringVar(root, value='1')
-    var.set(values["user"])
+    var=StringVar()
+    var.set('Initialize')
     Radiobutton(root, text='user', variable=var, value='user', bg="lightblue").pack(pady=5)
     Radiobutton(root, text='worker', variable=var, value='worker', bg="lightblue").pack(pady=5)
+    selection=var.get()
 
     def submit():
-        if var=='user':
+        selection = var.get()
+        if selection=='user':
             user_window(root)
         else:
             worker_screen.worker_screen_func()
