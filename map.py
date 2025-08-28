@@ -30,3 +30,7 @@ def draw_map(address1,address2,desired_distance):
             match = False
             return match
 
+#כדי לקרוא לפונקציה לכתוב כתובת ככה: רחוב ומספר, עיר
+#לשים את המרחק הרצוי
+#מחזירה T אם יש המרחק מתאים ומראה מפה
+# מחזירה F אם המרחק גדול מדי

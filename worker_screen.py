@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 
-def worker_screen():
+def worker_screen_func():
     win = Toplevel()
     win.geometry("400x300")
     win.title("Help To Go - WORKER ACCESS ONLY")
@@ -25,10 +25,10 @@ def worker_screen():
 
     Button(win, text="Submit", command=on_submit).pack(pady=20)
 
-root = Tk()
-root.geometry("300x200")
-root.title("Main")
-
-Button(root, text="Open Worker Screen", command=worker_screen).pack(pady=50)
-
-root.mainloop()
+# root = Tk()
+# root.geometry("300x200")
+# root.title("Main")
+#
+# Button(root, text="Open Worker Screen", command=worker_screen_func).pack(pady=50)
+#
+# root.mainloop()

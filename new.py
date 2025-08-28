@@ -22,8 +22,9 @@ def start_screen(root):
           font=("Times New Roman", 20), fg="darkblue", bg="lightblue").pack(pady=20)
 
     user_or_worker = worker_or_user(root)
-    if user_or_worker == worker:
-        worker_screen.worker_screen()
+
+    if user_or_worker == "worker":
+        worker_screen.worker_screen_func()
 
     else:
 
