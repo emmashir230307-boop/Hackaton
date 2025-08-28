@@ -7,12 +7,9 @@ MILITARY_LST=["222222222","555555555"]
 EMPLOYED=[("111111111","12345678"),("888888888","87654321")]
 
 VOLUNTEER_DICT={}
-NEED_HELP_DICT={"222222222":{'name':'Maya','address':'רוטשילד 12, תל אביב','password':'Maya123','user type':consts.MILITARY_SERVICE_FAM},
-                '555555555':{},
-                '333333333':{},
-                '666666666':{},
-                "444444444":{},
-                "777777777":{}}
+NEED_HELP_DICT={"222222222":{'name':'Maya','address':'רוטשילד 12, תל אביב','password':'Maya123','user type':consts.MILITARY_SERVICE_FAM,'help type':consts.CLOTHES,'phone num':'0526023327'},
+                '333333333':{'name':'Tamar','address':'מוריה 17, חיפה','password':'Vbe8443','user type':consts.EVICTED_FAM,'help type':consts.BABYSITTER,'phone num':'0526066627'},
+                "444444444":{'name':'Shani','address':'דיזינגוף 15, תל אביב','password':'Jk3drd4','user type':consts.LONELY_SOLDIER,'help type':consts.FOOD,'phone num':'0526023327'},}
 LONELY_SOLDIER='LONE SOLDIER'
 EVICTED_FAM='EVICTED FAMILY'
 MILITARY_SERVICE_FAM='MILITARY FAMILY'
