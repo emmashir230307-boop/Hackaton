@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-import consts, worker
+import consts
 import worker_screen
 
 
@@ -111,7 +111,7 @@ def signup(root, id_num, password):
             return
 
         if user_type == consts.VOLUNTEER:
-            if worker.legit():
+            if consts.IMAGES[id_num]:
                 consts.VOLUNTEER_DICT[id_num] = {
                     'password': password,
                     'user type': user_type,

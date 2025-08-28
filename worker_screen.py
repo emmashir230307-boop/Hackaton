@@ -1,5 +1,9 @@
 from tkinter import *
 from tkinter import messagebox
+import os
+
+import consts
+
 
 def worker_screen_func():
     win = Toplevel()
@@ -18,13 +22,24 @@ def worker_screen_func():
         value = var.get()
         if value == 'legitimate':
             messagebox.showinfo("Info", "User approved.", parent=win)
+            return True
         elif value == 'not_legitimate':
             messagebox.showwarning("Info", "User not approved.", parent=win)
+            return False
         else:
             messagebox.showwarning("Info", "Please choose an option", parent=win)
 
-    Button(win, text="Submit", command=on_submit).pack(pady=20)
+    def legit():
+        # worker takes the picture and opens it
+        for id_num in consts.IMAGES.keys():
+            os.startfile(consts.IMAGES[id_num])
+            answer=Button(win, text="Submit", command=on_submit).pack(pady=20)
+            if answer == True:
+                consts.IMAGES[id_num]=True
+            else:
+                consts.IMAGES[id_num]= False
 
+    legit()
 # root = Tk()
 # root.geometry("300x200")
 # root.title("Main")
