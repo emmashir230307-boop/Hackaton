@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import consts, worker
 
-def start_screen(root):
+def start_screen():
     for widget in root.winfo_children():
         widget.destroy()
 
@@ -35,14 +35,12 @@ def start(root, id_num, password):
             messagebox.showerror("Error", "Wrong password.")
         else:
             messagebox.showinfo("Success", "Signed in successfully as volunteer!")
-            main_menu(root, "volunteer", id_num)
 
     elif id_num in consts.NEED_HELP_DICT.keys():
         if password != consts.NEED_HELP_DICT[id_num]['password']:
             messagebox.showerror("Error", "Wrong password.")
         else:
             messagebox.showinfo("Success", "Signed in successfully as user in need!")
-            main_menu(root, "need_help", id_num)
 
     else:
         messagebox.showinfo("Info", "User not found, signing up...")
@@ -52,25 +50,23 @@ def signup(root, id_num, password):
     for widget in root.winfo_children():
         widget.destroy()
 
-    Label(root, text="Signup screen (new user)",
-          font=("Times New Roman", 18), fg="purple", bg="lightblue").pack(pady=10)
+    Label(root, text="Signup screen",
+          font=("Times New Roman", 18), fg="darkblue", bg="lightblue").pack(pady=10)
 
+    # קליטת עזרה
     Label(root, text="Enter your name:", bg="lightblue").pack(pady=5)
     entry_name = Entry(root, width=20)
     entry_name.pack(pady=5)
-
     Label(root, text="Enter your phone number:", bg="lightblue").pack(pady=5)
     entry_phone = Entry(root, width=20)
     entry_phone.pack(pady=5)
-
-    Label(root, text="What are you?", bg="lightblue").pack(pady=5)
+    Label(root, text="Who are you?", bg="lightblue").pack(pady=5)
     user_type_var = StringVar(root)
-    user_type_var.set(consts.USERS_TYPE[0])
-    OptionMenu(root, user_type_var, *consts.USERS_TYPE).pack(pady=5)
-
-    Label(root, text="What type of help do you need/offer?", bg="lightblue").pack(pady=5)
+    user_type_var.set("who are you?")
+    OptionMenu(root, user_type_var, *consts.USERS_TYPE2).pack(pady=5)
+    Label(root, text="What type of help do you need?", bg="lightblue").pack(pady=5)
     help_type_var = StringVar(root)
-    help_type_var.set(consts.HELP_OPTIONS[0])
+    help_type_var.set("choose:")
     OptionMenu(root, help_type_var, *consts.HELP_OPTIONS).pack(pady=5)
 
     def on_submit():
@@ -95,7 +91,7 @@ def signup(root, id_num, password):
             messagebox.showerror("Error", "Invalid help type.")
             return
 
-        if user_type == consts.DONOR:
+        if user_type == consts.VOLUNTEER:
             if worker.legit():
                 consts.VOLUNTEER_DICT[id_num] = {
                     'password': password,
@@ -118,45 +114,10 @@ def signup(root, id_num, password):
             }
             messagebox.showinfo("Success", "User signed up successfully!")
 
-        main_menu(root, user_type, id_num)
 
     Button(root, text="Submit", command=on_submit).pack(pady=10)
     Button(root, text="Back to login", command=lambda: start_screen(root)).pack(pady=5)
 
-def main_menu(root, user_type, id_num):
-    for widget in root.winfo_children():
-        widget.destroy()
-
-    Label(root, text=f"Main Menu ({user_type})",
-          font=("Times New Roman", 18), fg="green", bg="lightblue").pack(pady=20)
-
-    Button(root, text="View Profile", width=20,
-           command=lambda: view_profile(root, user_type, id_num)).pack(pady=5)
-    Button(root, text="Search Users", width=20,
-           command=lambda: messagebox.showinfo("Search", "Search screen (to be implemented)")).pack(pady=5)
-    Button(root, text="Settings", width=20,
-           command=lambda: messagebox.showinfo("Settings", "Settings screen (to be implemented)")).pack(pady=5)
-    Button(root, text="Logout", width=20, command=lambda: start_screen(root)).pack(pady=20)
-
-def view_profile(root, user_type, id_num):
-    for widget in root.winfo_children():
-        widget.destroy()
-
-    if user_type == consts.DONOR:
-        user_data = consts.VOLUNTEER_DICT.get(id_num)
-    else:
-        user_data = consts.NEED_HELP_DICT.get(id_num)
-
-    if not user_data:
-        messagebox.showerror("Error", "User data not found!")
-        main_menu(root, user_type, id_num)
-        return
-
-    Label(root, text=f"Profile ({user_type})", font=("Times New Roman", 18), fg="blue", bg="lightblue").pack(pady=10)
-    for key, value in user_data.items():
-        Label(root, text=f"{key}: {value}", bg="lightblue").pack(pady=2)
-
-    Button(root, text="Back to Main Menu", command=lambda: main_menu(root, user_type, id_num)).pack(pady=10)
 
 
 
@@ -165,5 +126,5 @@ root.geometry("500x500")
 root.title("Help To Go :)")
 root.configure(bg='lightblue')
 
-start_screen(root)
+start_screen()
 root.mainloop()
