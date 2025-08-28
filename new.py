@@ -2,12 +2,22 @@ from tkinter import *
 from tkinter import messagebox
 import consts, worker
 
-def start_screen():
+def worker_or_user():
+    Label(root, text="Please choose who you are: ", font=("Times New Roman", 12), bg="lightblue").pack(pady=10)
+    win = Toplevel()
+    var = StringVar()
+    var.set(None)
+    Radiobutton(win, text='Legitimate', variable=var, value='legitimate', bg="orange").pack(pady=5)
+    Radiobutton(win, text='Not legitimate', variable=var, value='not_legitimate', bg="orange").pack(pady=5)
+
+def start_screen(root):
     for widget in root.winfo_children():
         widget.destroy()
 
     Label(root, text="Hello, Welcome to Help To Go!",
           font=("Times New Roman", 20), fg="darkblue", bg="lightblue").pack(pady=20)
+
+    worker_or_user()
 
     Label(root, text="Please enter your ID: ", font=("Times New Roman", 12), bg="lightblue").pack(pady=10)
     entry_id = Entry(root, width=20)
@@ -75,18 +85,16 @@ def signup(root, id_num, password):
         user_type = user_type_var.get().upper()
         help_type = help_type_var.get().upper()
 
+        # בדיקות תקינות
         if not name.isalpha():
             messagebox.showerror("Error", "Invalid name. Use letters only.")
             return
-
         if not phone.isdigit() or len(phone) != 10 or phone[0] != "0" or phone[1] != "5":
             messagebox.showerror("Error", "Invalid phone number. Must be Israeli mobile.")
             return
-
         if user_type not in consts.USERS_TYPE:
             messagebox.showerror("Error", "Invalid user type.")
             return
-
         if help_type not in consts.HELP_OPTIONS:
             messagebox.showerror("Error", "Invalid help type.")
             return
@@ -126,5 +134,5 @@ root.geometry("500x500")
 root.title("Help To Go :)")
 root.configure(bg='lightblue')
 
-start_screen()
+start_screen(root)
 root.mainloop()
