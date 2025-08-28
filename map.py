@@ -1,6 +1,7 @@
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 import folium
+import webbrowser
 
 # Create geolocator
 geolocator = Nominatim(user_agent="my_app")
@@ -39,3 +40,4 @@ else:
     # Save the map
     m.save("map.html")
     print("The map has been saved as map.html. Open it in your browser to view it.")
+    webbrowser.open("map.html")
