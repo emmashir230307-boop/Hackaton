@@ -84,16 +84,20 @@ def signup(root, id_num, password):
     user_type_var = StringVar(root)
     user_type_var.set("who are you?")
     OptionMenu(root, user_type_var, *consts.USERS_TYPE2).pack(pady=5)
-    Label(root, text="What type of help do you need?", bg="light blue").pack(pady=5)
+    Label(root, text="What type of help do you need/want to give?", bg="light blue").pack(pady=5)
     help_type_var = StringVar(root)
     help_type_var.set("choose:")
     OptionMenu(root, help_type_var, *consts.HELP_OPTIONS).pack(pady=5)
+    Label(root, text="Enter your address:", bg="light blue").pack(pady=5)
+    entry_address = Entry(root, width=20)
+    entry_address.pack(pady=5)
 
     def on_submit():
         name = entry_name.get()
         phone = entry_phone.get()
         user_type = user_type_var.get().upper()
         help_type = help_type_var.get().upper()
+        address = entry_address.get
 
         # checking valid
         if not name.isalpha():
@@ -116,7 +120,8 @@ def signup(root, id_num, password):
                     'user type': user_type,
                     'help type': help_type,
                     'name': name,
-                    'phone number': phone
+                    'phone number': phone,
+                    "address" : address
                 }
                 messagebox.showinfo("Success", "Volunteer signed up successfully!")
             else:
@@ -128,7 +133,8 @@ def signup(root, id_num, password):
                 'user type': user_type,
                 'help type': help_type,
                 'name': name,
-                'phone number': phone
+                'phone number': phone,
+                "address" : address
             }
             messagebox.showinfo("Success", "User signed up successfully!")
 
