@@ -74,7 +74,7 @@ def signup(root, id_num, password):
     Label(root, text="Signup screen",
           font=("Times New Roman", 18), fg="darkblue", bg="lightblue").pack(pady=10)
 
-    # קליטת עזרה
+    # inputting help
     Label(root, text="Enter your name:", bg="lightblue").pack(pady=5)
     entry_name = Entry(root, width=20)
     entry_name.pack(pady=5)
